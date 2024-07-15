@@ -127,6 +127,25 @@
         <a href="downloads/tmuf-2008-challenges.zip">⇩ Trackmania United Forever challenges (38 tracks) - 589KB zip</a>
       </p>
     </section>
+    <section id="assets">
+      <h2>Assets</h2>
+      <div id="asset-list"></div>
+      <script>
+        /* Fetch assets from GitHub API and display in a list. Source: https://stackoverflow.com/a/53218452 */
+        (async () => {
+          const response = await fetch('https://api.github.com/repos/andrewwise/clan-afk/contents/assets/');
+          const data = await response.json();
+          let htmlString = '<ul>';
+          
+          for (let file of data) {
+            htmlString += `<li><a href="${file.path}" target="_blank">${file.name}</a></li>`;
+          }
+  
+          htmlString += '</ul>';
+          document.getElementById('asset-list').innerHTML = htmlString;
+        })()
+      </script>
+    </section>
   </main>
   <footer>
     <p>This page was created by <a href="https://andrewwise.co.uk">Andrew Wise</a><br> using the <a href="https://simplecss.org/">Simple.css framework</a> and is hosted on <a href="https://github.com/andrewwise/clan-afk">GitHub</a>.</p>
